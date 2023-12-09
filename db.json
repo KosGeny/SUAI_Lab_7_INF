@@ -6,7 +6,6 @@
     "id": 1,
     "name": "Ново-Пассит",
     "company": "Teva",
-    "recipe_is_required": false,
     "count": 16,
     "price": 320.73
   },
@@ -14,24 +13,15 @@
     "id": 2,
     "name": "Мирамистин",
     "company": "ИНФАМЕД К",
-    "recipe_is_required": false,
-    "count": 23, "price": 287.0
+    "count": 23,
+    "price": 287.0
   },
   {
     "id": 3,
     "name": "Новокаин",
     "company": "ДАЛЬХИМФАРМ",
-    "recipe_is_required": true,
     "count": 1,
     "price": 1020.5
-  },
-  {
-    "id": "4",
-    "name": "арбидол",
-    "company": "химфарм",
-    "recipe_is_required": "True",
-    "count": "20",
-    "price": "230"
   }
 ],
 "cashiers": [
@@ -94,7 +84,8 @@
         "medicament_id": 1,
         "count": 1
       },
-      {"medicament_id": 2,
+      {
+        "medicament_id": 2,
         "count": 1
       }
     ],

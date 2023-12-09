@@ -1,4 +1,21 @@
 import utils.json_service as json_service
+import service_base
+
+
+def generation_dictionary(keys = ["name", "company", "count", "price"]):
+    medicament = {}
+    for key in keys:
+        if key == "name":
+            print('Введите название препарата')
+            medicament[key] = input()
+        if key == "company":
+            print('Введите название производителя')
+            medicament[key] = input()
+        if key == "count":
+            medicament[key] = service_base.IsInt()
+        if key == "price":
+            medicament[key] = service_base.IsInt()
+    return medicament
 
 def get_id():
     db = json_service.get_database()

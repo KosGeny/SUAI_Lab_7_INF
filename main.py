@@ -17,32 +17,18 @@ def id_input_check(list_of_id):
             print('Ой, что-то пошло нет так! Попробуйте ещё раз!')
     return value
 
-def pattern():
-    dict_medicaments = {"id" : None, "name" : None, "company" : None, "recipe_is_required" : None, "count": None, "price" : None}
-    for key in dict_medicaments.keys():
-        if key in ("id", "count", "price"):
-            dict_medicaments[key] = input(f'{key}')
-        else:
-            dict_medicaments[key] = input(f'{key}')
-
 def crud(partition, operation):
     if operation == 1:
-        dict_medicaments = {"id": None, "name": None, "company": None, "recipe_is_required": None, "count": None,
-                         "price": None}
-        for key in dict_medicaments.keys():
-            if key in ("id", "count", "price"):
-                print('!')
-                dict_medicaments[key] = input(f'{key}')
-            else:
-                dict_medicaments[key] = input(f'{key}')
-        return partition.create_one(dict_medicaments)
+        return partition.create_one(partition.generation_dictionary())
     if operation == 2:
-        id = id_input_check(partition.get_id())
-        return partition.get_one_by_id(id)
+        return partition.get_all()
     if operation == 3:
         id = id_input_check(partition.get_id())
-        return
+        return partition.get_one_by_id(id)
     if operation == 4:
+        id = id_input_check(partition.get_id())
+        return
+    if operation == 5:
         id = id_input_check(partition.get_id())
         return partition.delete_one_by_id(id)
 

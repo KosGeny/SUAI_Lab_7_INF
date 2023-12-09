@@ -8,4 +8,4 @@ def get_database():
 
 def set_database(db):
     with open("db.json", "w", encoding="utf-8", ) as db_file:
-        json.dump(db, db_file, ensure_ascii=False)
+        json.dump(db, db_file, indent=2, ensure_ascii=False)
