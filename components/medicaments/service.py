@@ -12,8 +12,10 @@ def generation_dictionary(keys = ["name", "company", "count", "price"]):
             print('Введите название производителя')
             medicament[key] = input()
         if key == "count":
+            print('Введите количество товара')
             medicament[key] = service_base.IsInt()
         if key == "price":
+            print('Введите цену за единицу товара')
             medicament[key] = service_base.IsInt()
     return medicament
 

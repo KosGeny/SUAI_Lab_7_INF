@@ -4,9 +4,8 @@ def IsInt():
         try:
             value = int(input())
             flag = False
-            print('Win')
         except:
-            print('ijrjgirg')
+            print('Попробуйте ещё раз!')
     return value
 
 def IsInt_length(length=-1):
@@ -18,6 +17,6 @@ def IsInt_length(length=-1):
                 flag = False
                 print('Win')
             else:
-                print('again')
+                print(f'Ограничение на количество символов: {length}')
         except:
-            print('ijrjgirg')
+            print('Неверный формат введённых данных')

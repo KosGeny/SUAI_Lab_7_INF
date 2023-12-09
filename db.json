@@ -1,112 +1,119 @@
 {
-"pharmacy_name": "Аптека Ригла",
-"address": "ул. Аптечная, 53",
-"medicaments": [
-  {
-    "id": 1,
-    "name": "Ново-Пассит",
-    "company": "Teva",
-    "count": 16,
-    "price": 320.73
-  },
-  {
-    "id": 2,
-    "name": "Мирамистин",
-    "company": "ИНФАМЕД К",
-    "count": 23,
-    "price": 287.0
-  },
-  {
-    "id": 3,
-    "name": "Новокаин",
-    "company": "ДАЛЬХИМФАРМ",
-    "count": 1,
-    "price": 1020.5
-  }
-],
-"cashiers": [
-  {
-    "id": 1,
-    "name": "Скомороха Анна Сергеевна",
-    "age": 45,
-    "contacts": {
-      "email": "example1@mail.ru",
-      "phone": "+75655518486"
+  "pharmacy_name": "Аптека Ригла",
+  "address": "ул. Аптечная, 53",
+  "medicaments": [
+    {
+      "id": 1,
+      "name": "Ново-Пассит",
+      "company": "Teva",
+      "count": 16,
+      "price": 320
+    },
+    {
+      "id": 2,
+      "name": "Мирамистин",
+      "company": "ИНФАМЕД К",
+      "count": 23,
+      "price": 287
+    },
+    {
+      "id": 3,
+      "name": "Новокаин",
+      "company": "ДАЛЬХИМФАРМ",
+      "count": 1,
+      "price": 1020
+    },
+    {
+      "id": 4,
+      "name": "Афобазол",
+      "company": "химфарм",
+      "count": 76,
+      "price": 564
     }
-  },
-  {
-    "id": 2,
-    "name": "Пушкин Иван Максимович",
-    "age": 45,
-    "contacts": {
-      "email": "example1@mail.ru",
-      "phone": "+75655518486"
-    }
-  }
-],
-"costumers": [
-  {
-    "id": 1,
-    "name": "Смирнова Екатерина",
-    "discount_card": 8919645656,
-    "contacts": {
-      "email": "smirnova@example.com",
-      "phone": "+1122334455"
-    }
-  },
-  {
-    "id": 2,
-    "name": "Иванова Ольга",
-    "discount_card": 8919645786,
-    "contacts": {
-      "email": "ivanova@example.com",
-      "phone": "+9988776655"
-    }
-  },
-  {
-    "id": 3,
-    "name": "Петров Иван",
-    "discount_card": 8987345658,
-    "contacts": {
-      "email": "petrov@example.com",
-      "phone": "+3344556677"
-    }
-  }
-],
-"sellings": [
-  {
-    "id": 1,
-    "date": "07.10.2023",
-    "cashier_id": 2,
-    "costumer_id": 1,
-    "list_of_medicaments": [
-      {
-        "medicament_id": 1,
-        "count": 1
-      },
-      {
-        "medicament_id": 2,
-        "count": 1
+  ],
+  "cashiers": [
+    {
+      "id": 1,
+      "name": "Скомороха Анна Сергеевна",
+      "age": 45,
+      "contacts": {
+        "email": "example1@mail.ru",
+        "phone": "+75655518486"
       }
-    ],
-    "income": 607.73
-  },
-  {
-    "id": 2,
-    "date": "01.12.2023",
-    "cashier_id": 1,
-    "costumer_id": 3,
-    "list_of_medicaments": [
-      {
-        "medicament_id": 2,
-        "count": 2
-      },
-      {
-        "medicament_id": 3,
-        "count": 1
+    },
+    {
+      "id": 2,
+      "name": "Пушкин Иван Максимович",
+      "age": 45,
+      "contacts": {
+        "email": "example1@mail.ru",
+        "phone": "+75655518486"
       }
-    ],
-    "income": 1594.5
-  }
-]
+    }
+  ],
+  "costumers": [
+    {
+      "id": 1,
+      "name": "Смирнова Екатерина",
+      "discount_card": 8919645656,
+      "contacts": {
+        "email": "smirnova@example.com",
+        "phone": "+71223344558"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Иванова Ольга",
+      "discount_card": 8919645786,
+      "contacts": {
+        "email": "ivanova@example.com",
+        "phone": "+79887766559"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Петров Иван",
+      "discount_card": 8987345658,
+      "contacts": {
+        "email": "petrov@example.com",
+        "phone": "+73445566777"
+      }
+    }
+  ],
+  "sellings": [
+    {
+      "id": 1,
+      "date": "07.10.2023",
+      "cashier_id": 2,
+      "costumer_id": 1,
+      "list_of_medicaments": [
+        {
+          "medicament_id": 1,
+          "count": 1
+        },
+        {
+          "medicament_id": 2,
+          "count": 1
+        }
+      ],
+      "income": 607.73
+    },
+    {
+      "id": 2,
+      "date": "01.12.2023",
+      "cashier_id": 1,
+      "costumer_id": 3,
+      "list_of_medicaments": [
+        {
+          "medicament_id": 2,
+          "count": 2
+        },
+        {
+          "medicament_id": 3,
+          "count": 1
+        }
+      ],
+      "income": 1594.5
+    }
+  ]
 }

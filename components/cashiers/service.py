@@ -1,4 +1,22 @@
 import utils.json_service as json_service
+import service_base
+
+def generation_dictionary(keys = ["name", "age", "contacts"]):
+    cashier = {}
+    for key in keys:
+        if key == "name":
+            print('Введите ФИО сотрудника')
+            cashier[key] = input()
+        if key == "age":
+            print('Введите возраст сотрудника')
+            cashier[key] = service_base.IsInt_length(2)
+        if key == "contacts":
+            print('Введите адрес электронной почты')
+            cashier[key]["email"] = input()
+            print('Введите номер телефона')
+            print('+7', end='')
+            cashier[key]["phone"] = service_base.IsInt_length(10)
+    return cashier
 
 def get_id():
     db = json_service.get_database()

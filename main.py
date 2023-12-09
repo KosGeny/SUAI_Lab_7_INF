@@ -61,5 +61,5 @@ while flag:
     except:
         print('ijrjgirg')
 
-partition = medicaments
+partition = cashiers
 print(crud(partition, operation))
