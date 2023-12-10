@@ -10,6 +10,7 @@ def generation_dictionary(medicament={"name": None, "company": None, "count": No
             print('Введите название компании')
             medicament[key] = input()
         if key == "count":
+            print('Введите количество')
             medicament["count"] = service_base.IsInt()
         if key == "price":
             medicament["price"] = service_base.IsInt()
@@ -39,10 +40,7 @@ def update_one_by_id(id, medicament):
 
     for i, elem in enumerate(db["medicaments"]):
         if elem["id"] == id:
-
-            elem["name"] = medicament["name"]
-            elem["company"] = medicament["company"]
-
+            db["medicaments"][i] = {"id": id, **medicament}
             json_service.set_database(db)
             return elem
 

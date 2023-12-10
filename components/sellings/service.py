@@ -89,15 +89,12 @@ def get_all():
     return db["medicaments"]
 
 
-def update_one_by_id(id, medicament):
+def update_one_by_id(id, selling):
     db = json_service.get_database()
 
-    for i, elem in enumerate(db["medicaments"]):
+    for i, elem in enumerate(db["sellings"]):
         if elem["id"] == id:
-
-            elem["name"] = medicament["name"]
-            elem["company"] = medicament["company"]
-
+            db["sellings"][i] = {"id": id, **selling}
             json_service.set_database(db)
             return elem
 
@@ -107,10 +104,10 @@ def update_one_by_id(id, medicament):
 def delete_one_by_id(id):
     db = json_service.get_database()
 
-    for i, elem in enumerate(db["medicaments"]):
+    for i, elem in enumerate(db["sellings"]):
         if elem["id"] == id:
 
-            candidate = db["medicaments"].pop(i)
+            candidate = db["sellings"].pop(i)
             json_service.set_database(db)
 
             return candidate
@@ -118,10 +115,10 @@ def delete_one_by_id(id):
     return {"message": f"Элемент с {id} не найден"}
 
 
-def create_one(medicament):
+def create_one(selling):
     db = json_service.get_database()
 
-    last_medicament_id = get_all()[-1]["id"]
-    db["medicaments"].append({"id": last_medicament_id + 1, **medicament})
+    last_selling_id = get_all()[-1]["id"]
+    db["sellings"].append({"id": last_selling_id + 1, **selling})
 
     json_service.set_database(db)

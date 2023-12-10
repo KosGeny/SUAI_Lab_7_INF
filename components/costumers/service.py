@@ -53,10 +53,7 @@ def update_one_by_id(id, costumer):
 
     for i, elem in enumerate(db["costumers"]):
         if elem["id"] == id:
-
-            elem["name"] = costumer["name"]
-            elem["discount_card"] = costumer["discount_card"]
-
+            db["costumers"][i] = {"id": id, **costumer}
             json_service.set_database(db)
             return elem
 
