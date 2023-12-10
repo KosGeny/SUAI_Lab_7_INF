@@ -55,7 +55,7 @@ def update_one_by_id(id, costumer):
         if elem["id"] == id:
             db["costumers"][i] = {"id": id, **costumer}
             json_service.set_database(db)
-            return elem
+            return 'Успешно!'
 
     return {"message": f"Элемент с {id} не найден"}
 
@@ -69,7 +69,7 @@ def delete_one_by_id(id):
             candidate = db["costumers"].pop(i)
             json_service.set_database(db)
 
-            return candidate
+            return 'Успешно!'
 
     return {"message": f"Элемент с {id} не найден"}
 
@@ -81,3 +81,5 @@ def create_one(costumer):
     db["costumers"].append({"id": last_costumer_id + 1, **costumer})
 
     json_service.set_database(db)
+
+    return 'Успешно!'

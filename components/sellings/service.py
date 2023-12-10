@@ -15,33 +15,53 @@ def generation_dictionary(candidate={"cashier_id": None, "costumer_id": None, "l
             if len(candidate["list_of_medicaments"]) != 0:
                 print('Выберите действие, которое нужно совершить со списком проданных лекарств' + '\n' + '1 - Изменить количество одного лекарства' + '\n' + '2 - Удалить из списка лекарство' + '\n' + '3 - Добавить лекарства')
 
-                if service_base.IsInt_Range((1,2,3)) == 1:
+                action = service_base.IsInt_Range((1,2,3))
+                if action == 1: #обновление записи УДАЛЕНИЕ!
                     list_of_id = [elem["medicament_id"] for elem in candidate["list_of_medicaments"]]
                     print('Введите id лекарства:')
                     medicament_id = service_base.IsInt_Range(list_of_id)
                     for i, elem in enumerate(candidate["list_of_medicaments"]):
                         if elem["medicament_id"] == medicament_id:
-                            count = checker.count_input_check(medicament_id, "medicaments", start_count=elem["count"])
                             refund(medicament_id, elem["count"])
-                            candidate["list_of_medicaments"][i]["count"] = count
+                            candidate["list_of_medicaments"][i]["count"], candidate["list_of_medicaments"][i]["price"] = selling(medicament_id)
                     income = 0
                     for elem in candidate["list_of_medicaments"]:
                         income += elem["price"]
                     candidate["income"] = income
 
-                if service_base.IsInt_Range((1,2,3)) == 3:
+                elif action == 2: #удаление записи
+                    list_of_id = [elem["medicament_id"] for elem in candidate["list_of_medicaments"]]
+                    print('Введите id лекарства:')
+                    medicament_id = service_base.IsInt_Range(list_of_id)
+                    for i, elem in enumerate(candidate["list_of_medicaments"]):
+                        if elem["medicament_id"] == medicament_id:
+                            refund(medicament_id, elem["count"])
+                            candidate["list_of_medicaments"].pop(i)
+                    income = 0
+                    for elem in candidate["list_of_medicaments"]:
+                        income += elem["price"]
+                    candidate["income"] = income
+
+                elif action == 3: #добавление записей
+                    print('Заполните список лекарств, которые хотите добавить')
                     while True:
                         print(f'Введите id лекарства: ', end='')
                         medicament_id = checker.id_input_check("medicaments")
                         print(f'Введите количество: ', end='')
-                        medicament_count = checker.count_input_check(medicament_id, "medicaments")
+                        medicament_count, price = selling(medicament_id)
                         candidate["list_of_medicaments"].append(
-                            {"medicament_id": medicament_id, "count": medicament_count})
-                        print('Продолжить ввод?     1 - да, 2 - нет')
+                            {"medicament_id": medicament_id, "count": medicament_count, "price": price})
+                        income += price
+                        print('Продолжить ввод следующего лекарства?     1 - да, 2 - нет')
                         if service_base.IsInt_Range((1, 2)) == 2:
                             break
+                    income = 0
+                    for elem in candidate["list_of_medicaments"]:
+                        income += elem["price"]
+                    candidate["income"] = income
             if len(candidate["list_of_medicaments"]) == 0:
                 income = 0
+                print('Заполните список лекарств')
                 while True:
                     print(f'Введите id лекарства: ', end='')
                     medicament_id = checker.id_input_check("medicaments")
@@ -49,7 +69,7 @@ def generation_dictionary(candidate={"cashier_id": None, "costumer_id": None, "l
                     medicament_count, price = selling(medicament_id)
                     candidate["list_of_medicaments"].append({"medicament_id": medicament_id, "count": medicament_count, "price": price})
                     income += price
-                    print('Продолжить ввод?     1 - да, 2 - нет')
+                    print('Продолжить ввод следующего лекарства?     1 - да, 2 - нет')
                     if service_base.IsInt_Range((1,2)) == 2:
                         break
                 candidate["income"] = income
@@ -69,6 +89,7 @@ def check_delete(partition_delete, id):
                 if elem2["medicament_id"] == id:
                     return False
     return True
+
 def get_id():
     db = json_service.get_database()
     return list(elem["id"] for elem in db["sellings"])
@@ -86,7 +107,7 @@ def get_one_by_id(id):
 def get_all():
     db = json_service.get_database()
 
-    return db["medicaments"]
+    return db["sellings"]
 
 
 def update_one_by_id(id, selling):
@@ -96,7 +117,7 @@ def update_one_by_id(id, selling):
         if elem["id"] == id:
             db["sellings"][i] = {"id": id, **selling}
             json_service.set_database(db)
-            return elem
+            return 'Успешно!'
 
     return {"message": f"Элемент с {id} не найден"}
 
@@ -110,7 +131,7 @@ def delete_one_by_id(id):
             candidate = db["sellings"].pop(i)
             json_service.set_database(db)
 
-            return candidate
+            return 'Успешно!'
 
     return {"message": f"Элемент с {id} не найден"}
 
@@ -122,3 +143,5 @@ def create_one(selling):
     db["sellings"].append({"id": last_selling_id + 1, **selling})
 
     json_service.set_database(db)
+
+    return 'Успешно!'

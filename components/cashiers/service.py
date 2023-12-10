@@ -54,25 +54,8 @@ def update_one_by_id(id, cashier):
     for i, elem in enumerate(db["cashiers"]):
         if elem["id"] == id:
             db["cashiers"][i] = {"id": id, **cashier}
-            # for key in keys:
-            #     if key == "name":
-            #         print('Введите ФИО сотрудника')
-            #         elem[key] = input()
-            #     if key == "age":
-            #         print('Введите возраст сотрудника')
-            #         elem[key] = service_base.IsInt_length(2)
-            #         if key == "contacts":
-            #             print('Вы уверены, что хотите изменить адрес электронной почты?' + '\n' + '1 - да' + '\n' + '2 - нет')
-            #             if service_base.IsInt() == 1:
-            #                 print('Введите адрес электронной почты')
-            #                 elem[key]["email"] = input()
-            #             print('Вы уверены, что хотите изменить номер телефона?' + '\n' + '1 - да' + '\n' + '2 - нет')
-            #             if service_base.IsInt() == 1:
-            #                 print('Введите номер телефона. Вводить +7 не нужно!')
-            #                 elem[key]["phone"] = '+7' + str(service_base.IsInt_length(10))
-
             json_service.set_database(db)
-            return elem
+            return 'Успешно!'
 
     return {"message": f"Элемент с {id} не найден"}
 
@@ -86,7 +69,7 @@ def delete_one_by_id(id):
             candidate = db["cashiers"].pop(i)
             json_service.set_database(db)
 
-            return candidate
+            return 'Успешно!'
 
     return {"message": f"Элемент с {id} не найден"}
 
@@ -94,24 +77,9 @@ def delete_one_by_id(id):
 def create_one(cashier):
     db = json_service.get_database()
 
-    # cashier = {"name": None, "age": None, "contacts": {}}
-    #
-    # for key in keys:
-    #     if key == "name":
-    #         print('Введите ФИО сотрудника')
-    #         cashier[key] = input()
-    #     if key == "age":
-    #         print('Введите возраст сотрудника')
-    #         cashier[key] = service_base.IsInt_length(2)
-    #         if key == "contacts":
-    #             print('Введите адрес электронной почты')
-    #             cashier[key]["email"] = input()
-    #             print('Введите номер телефона. Вводить +7 не нужно!')
-    #             cashier[key]["phone"] = '+7' + str(service_base.IsInt_length(10))
-
     last_cashier_id = get_all()[-1]["id"]
     db["cashiers"].append({"id": last_cashier_id + 1, **cashier})
 
     json_service.set_database(db)
 
-    return {"id": last_cashier_id + 1, **cashier}
+    return 'Успешно!'

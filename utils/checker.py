@@ -13,10 +13,9 @@ def id_input_check(partition):
     flag = True
     while flag:
         try:
-            value = int(input('Введите id нужной записи: '))
+            value = int(input('id: '))
             if value in list_of_id:
                 flag = False
-                print('Запись найдена!')
             else:
                 print('Данной записи нет в БД!')
                 print('Вы хотите продолжить?' + '\n' + '1 - да' + '\n' + '2 - нет')
@@ -30,7 +29,8 @@ def count_input_check(id, partition, start_count=0):
     db = json_service.get_database()
     while True:
         try:
-            value = int(input('Введите количество: '))
+            print('Количество: ', end='')
+            value = int(input())
             if value > 0:
                 for i, elem in enumerate(db[partition]):
                     if elem["id"] == id:

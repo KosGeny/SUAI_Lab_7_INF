@@ -13,6 +13,7 @@ def generation_dictionary(medicament={"name": None, "company": None, "count": No
             print('Введите количество')
             medicament["count"] = service_base.IsInt()
         if key == "price":
+            print('Введите цену')
             medicament["price"] = service_base.IsInt()
     return medicament
 
@@ -42,7 +43,7 @@ def update_one_by_id(id, medicament):
         if elem["id"] == id:
             db["medicaments"][i] = {"id": id, **medicament}
             json_service.set_database(db)
-            return elem
+            return 'Успешно!'
 
     return {"message": f"Элемент с {id} не найден"}
 
@@ -56,7 +57,7 @@ def delete_one_by_id(id):
             candidate = db["medicaments"].pop(i)
             json_service.set_database(db)
 
-            return candidate
+            return 'Успешно!'
 
     return {"message": f"Элемент с {id} не найден"}
 
@@ -68,3 +69,5 @@ def create_one(medicament):
     db["medicaments"].append({"id": last_medicament_id + 1, **medicament})
 
     json_service.set_database(db)
+
+    return 'Успешно!'

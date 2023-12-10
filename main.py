@@ -17,23 +17,26 @@ def crud(partition, operation):
         return partition.get_all()
 
     if operation == 3:
+        print('Введите id записи')
         id = checkID.id_input_check(partition)
         partition = globals().get(partition)
         return partition.get_one_by_id(id)
 
     if operation == 4:
+        print('Введите id записи')
         id = checkID.id_input_check(partition)
         partition = globals().get(partition)
         print('Используйте цифры 1 и 2, чтобы выбрать, что вы хотите изменить. 1 - да   2 - нет')
         list_of_keys = []
         for i, key in enumerate(partition.get_one_by_id(id).keys()):
-            if key != "id":
+            if key != "id" and key != "income":
                 print(f'{i} - {key}')
                 if service_base.IsInt_Range((1, 2)) == 1:
                     list_of_keys.append(key)
         return partition.update_one_by_id(id, partition.generation_dictionary(partition.get_one_by_id(id), keys=list_of_keys))
 
     if operation == 5:
+        print('Введите id записи')
         id = checkID.id_input_check(partition)
         partition_delete = str(partition)[:-1] + "_id"
         partition = globals().get(partition)
