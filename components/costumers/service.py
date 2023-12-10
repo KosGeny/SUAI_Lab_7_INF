@@ -1,21 +1,31 @@
 import utils.json_service as json_service
 import service_base
 
-def generation_dictionary(keys = ["name", "discount_card", "contacts"]):
-    costumer = {}
+def generation_dictionary(costumer={"name": None, "discount_card": None, "contacts": {"email": None, "phone": None}}, keys=["name", "discount_card", "contacts"]):
     for key in keys:
         if key == "name":
             print('Введите ФИО покупателя')
             costumer[key] = input()
         if key == "discount_card":
-            print('Введите номер карты покупателя')
+            print('Введите номер карты постоянного покупателя')
             costumer[key] = service_base.IsInt_length(10)
         if key == "contacts":
-            print('Введите адрес электронной почты')
-            costumer[key]["email"] = input()
-            print('Введите номер телефона')
-            print('+7', end='')
-            costumer[key]["phone"] = service_base.IsInt_length(10)
+            if costumer[key]["email"] != None:
+                print('Вы уверены, что хотите изменить адрес электронной почты?' + '\n' + '1 - да' + '\n' + '2 - нет')
+                if service_base.IsInt_Range((1, 2)) == 1:
+                    print('Введите адрес электронной почты')
+                    costumer[key]["email"] = input()
+            else:
+                print('Введите адрес электронной почты')
+                costumer[key]["email"] = input()
+            if costumer[key]["phone"] != None:
+                print('Вы уверены, что хотите изменить номер телефона?' + '\n' + '1 - да' + '\n' + '2 - нет')
+                if service_base.IsInt_Range((1, 2)) == 1:
+                    print('Введите номер телефона. Вводить +7 не нужно!')
+                    costumer[key]["phone"] = '+7' + str(service_base.IsInt_length(10))
+            else:
+                print('Введите номер телефона. Вводить +7 не нужно!')
+                costumer[key]["phone"] = '+7' + str(service_base.IsInt_length(10))
     return costumer
 
 def get_id():
