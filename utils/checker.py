@@ -32,8 +32,10 @@ def count_input_check(id, partition, start_count=0):
                     if elem["id"] == id:
                         if elem["count"] + start_count >= value:
                             return value
+                        elif elem["count"] + start_count == 0:
+                            return 0
                         else:
-                            print('Превышение количества')
+                            print(f'Превышение количества. Доступно: {elem["count"] + start_count}')
             else:
                 print('Количество должно быть больше нуля!')
         except:
