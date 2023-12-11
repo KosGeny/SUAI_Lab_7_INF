@@ -4,8 +4,6 @@ import service_base
 def id_input_check(partition):
     db = json_service.get_database()
     list_of_id = list(elem["id"] for elem in db[partition])
-    # partition = globals().get(partition)
-    # list_of_id = partition.get_id()
     flag = True
     while flag:
         try:

@@ -2,26 +2,15 @@ import utils.json_service as json_service
 
 def selling(id, value):
     db = json_service.get_database()
-    while True:
-        try:
-            if value > 0:
-                for i, elem in enumerate(db["medicaments"]):
-                    if elem["id"] == id:
-                        db["medicaments"][i]["count"] -= value
-                        income = elem["price"] * value
-                        json_service.set_database(db)
-                        return value, income
-                        # if elem["count"] >= value:
-                        #     db["medicaments"][i]["count"] -= value
-                        #     income = elem["price"]*value
-                        #     json_service.set_database(db)
-                        #     return value, income
-                        # else:
-                        #     print(f'Превышение количества. Доступно {elem["count"]}')
-            else:
-                print('Количество должно быть больше нуля!')
-        except:
-            print('Ой, что-то пошло нет так! Попробуйте ещё раз!')
+
+    for i, elem in enumerate(db["medicaments"]):
+        if elem["id"] == id:
+            db["medicaments"][i]["count"] -= value
+            income = elem["price"] * value
+            json_service.set_database(db)
+            return value, income
+        else:
+            print('Количество должно быть больше нуля!')
 
 def refund(id, count):
     db = json_service.get_database()
