@@ -41,12 +41,13 @@ def crud(partition, operation):
         partition_delete = str(partition)[:-1] + "_id"
         partition = globals().get(partition)
         if partition != sellings:
-            if checker.check_delete(partition_delete, id):
+            list_of_id = checker.check_delete(partition_delete, id)
+            if len(list_of_id) == 0:
                 return partition.delete_one_by_id(id)
             else:
-                return 'Операция не может быть совершена, т. к. может быть нарушена целостность БД'
+                return f'Операция не может быть совершена, т. к. может быть нарушена целостность БД. ID данной записи присутствует в следующих записях в "sellings": {list_of_id}'
         else:
-            partition.delete_one_by_id(id)
+            return partition.delete_one_by_id(id)
 
 
 print('Добро пожаловать в БД аптеки "Ригла"')
@@ -63,4 +64,4 @@ operation = service_base.IsInt_Range((1, 2, 3, 4, 5))
 try:
     print(crud(partition, operation))
 except:
-    print('Чтобы взаимодействовать с базой данных запустите программу снова')
+    print('Ошибка! Чтобы взаимодействовать с базой данных запустите программу снова')

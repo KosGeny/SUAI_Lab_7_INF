@@ -4,7 +4,7 @@ def selling(id):
     db = json_service.get_database()
     while True:
         try:
-            value = int(input('Введите количество: '))
+            value = int(input('Количество: '))
             if value > 0:
                 for i, elem in enumerate(db["medicaments"]):
                     if elem["id"] == id:

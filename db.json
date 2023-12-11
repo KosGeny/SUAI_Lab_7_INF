@@ -116,7 +116,7 @@
         {
           "medicament_id": 2,
           "count": 2,
-          "price": 287
+          "price": 574
         },
         {
           "medicament_id": 3,
@@ -124,7 +124,7 @@
           "price": 1020
         }
       ],
-      "income": 1307
+      "income": 1594
     }
   ]
 }

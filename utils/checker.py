@@ -41,15 +41,16 @@ def count_input_check(id, partition, start_count=0):
 
 def check_delete(partition_delete, id):
     db = json_service.get_database()
+    list_of_id = []
     for elem in db["sellings"]:
         if partition_delete == "cashier_id":
             if elem["cashier_id"] == id:
-                return False
+                list_of_id.append(elem["id"])
         if partition_delete == "costumer_id":
             if elem["costumer_id"] == id:
-                return False
+                list_of_id.append(elem["id"])
         if partition_delete == "medicament_id":
             for elem2 in elem["list_of_medicaments"]:
                 if elem2["medicament_id"] == id:
-                    return False
-    return True
+                    list_of_id.append(elem["id"])
+    return list_of_id
