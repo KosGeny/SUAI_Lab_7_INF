@@ -1,7 +1,3 @@
-import components.medicaments.service as medicaments
-import components.cashiers.service as cashiers
-import components.costumers.service as costumers
-import components.sellings.service as sellings
 import utils.json_service as json_service
 import service_base
 
@@ -42,3 +38,18 @@ def count_input_check(id, partition, start_count=0):
                 print('Количество должно быть больше нуля!')
         except:
             print('Ой, что-то пошло нет так! Попробуйте ещё раз!')
+
+def check_delete(partition_delete, id):
+    db = json_service.get_database()
+    for elem in db["sellings"]:
+        if partition_delete == "cashier_id":
+            if elem["cashier_id"] == id:
+                return False
+        if partition_delete == "costumer_id":
+            if elem["costumer_id"] == id:
+                return False
+        if partition_delete == "medicament_id":
+            for elem2 in elem["list_of_medicaments"]:
+                if elem2["medicament_id"] == id:
+                    return False
+    return True

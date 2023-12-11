@@ -24,6 +24,8 @@ def generation_dictionary(candidate={"cashier_id": None, "costumer_id": None, "l
                         if elem["medicament_id"] == medicament_id:
                             refund(medicament_id, elem["count"])
                             candidate["list_of_medicaments"][i]["count"], candidate["list_of_medicaments"][i]["price"] = selling(medicament_id)
+                            if candidate["list_of_medicaments"][i]["count"] == 0:
+                                candidate["list_of_medicaments"].pop(i)
                     income = 0
                     for elem in candidate["list_of_medicaments"]:
                         income += elem["price"]
@@ -74,21 +76,6 @@ def generation_dictionary(candidate={"cashier_id": None, "costumer_id": None, "l
                         break
                 candidate["income"] = income
     return candidate
-
-def check_delete(partition_delete, id):
-    db = json_service.get_database()
-    for elem in db["sellings"]:
-        if partition_delete == "cashier_id":
-            if elem["cashier_id"] == id:
-                return False
-        if partition_delete == "costumer_id":
-            if elem["costumer_id"] == id:
-                return False
-        if partition_delete == "medicament_id":
-            for elem2 in elem["list_of_medicaments"]:
-                if elem2["medicament_id"] == id:
-                    return False
-    return True
 
 def get_id():
     db = json_service.get_database()

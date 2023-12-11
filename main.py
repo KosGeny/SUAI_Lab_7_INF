@@ -2,7 +2,7 @@ import components.medicaments.service as medicaments
 import components.cashiers.service as cashiers
 import components.costumers.service as costumers
 import components.sellings.service as sellings
-import utils.checker as checkID
+import utils.checker as checker
 import service_base
 
 
@@ -18,13 +18,13 @@ def crud(partition, operation):
 
     if operation == 3:
         print('Введите id записи')
-        id = checkID.id_input_check(partition)
+        id = checker.id_input_check(partition)
         partition = globals().get(partition)
         return partition.get_one_by_id(id)
 
     if operation == 4:
         print('Введите id записи')
-        id = checkID.id_input_check(partition)
+        id = checker.id_input_check(partition)
         partition = globals().get(partition)
         print('Используйте цифры 1 и 2, чтобы выбрать, что вы хотите изменить. 1 - да   2 - нет')
         list_of_keys = []
@@ -37,11 +37,11 @@ def crud(partition, operation):
 
     if operation == 5:
         print('Введите id записи')
-        id = checkID.id_input_check(partition)
+        id = checker.id_input_check(partition)
         partition_delete = str(partition)[:-1] + "_id"
         partition = globals().get(partition)
         if partition != sellings:
-            if sellings.check_delete(partition_delete, id):
+            if checker.check_delete(partition_delete, id):
                 return partition.delete_one_by_id(id)
             else:
                 return 'Операция не может быть совершена, т. к. может быть нарушена целостность БД'
