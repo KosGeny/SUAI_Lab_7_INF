@@ -9,8 +9,6 @@ def selling(id, value):
             income = elem["price"] * value
             json_service.set_database(db)
             return value, income
-        else:
-            print('Количество должно быть больше нуля!')
 
 def refund(id, count):
     db = json_service.get_database()

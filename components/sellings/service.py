@@ -84,9 +84,10 @@ def generation_dictionary(candidate={"cashier_id": None, "costumer_id": None, "l
                                 print('Введите количество')
                                 count = checker.count_input_check(medicament_id, "medicaments")
                                 if count != 0:
+                                    sell_count, sell_price = elem["count"], elem["price"]
                                     candidate["list_of_medicaments"][i]["count"], candidate["list_of_medicaments"][i]["price"] = selling(medicament_id, count)
-                                    candidate["list_of_medicaments"][i]["count"] += elem["count"]
-                                    candidate["list_of_medicaments"][i]["price"] += elem["price"]
+                                    candidate["list_of_medicaments"][i]["count"] += sell_count
+                                    candidate["list_of_medicaments"][i]["price"] += sell_price
                                 else:
                                     print('Данного лекарства не достаточно, или его нет на складе!')
                                 break
